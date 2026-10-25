@@ -382,6 +382,17 @@ main {
 }
 .page-skeleton {
   min-height: 100dvh;
+  animation: sk-in 0.3s ease both;
+  transition: opacity 0.4s ease;
+}
+.page-skeleton.leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes sk-in {
+  from {
+    opacity: 0;
+  }
 }
 .page-skeleton.with-chrome {
   position: fixed;

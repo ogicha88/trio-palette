@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, MotionConfig } from "motion/react";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Ambient, LoginSheet, TabBar, Toast, TopBar } from "./components/Shell";
 import { PageSkeleton } from "./components/Skeleton";
@@ -26,6 +26,13 @@ function LiquidFilter() {
 export default function App() {
   const { ready } = useApp();
   const location = useLocation();
+  const [bootSkeleton, setBootSkeleton] = useState(true);
+
+  useEffect(() => {
+    if (!ready) return;
+    const t = setTimeout(() => setBootSkeleton(false), 450);
+    return () => clearTimeout(t);
+  }, [ready]);
 
   useEffect(() => {
     const brands = (navigator as Navigator & { userAgentData?: { brands: { brand: string }[] } }).userAgentData?.brands ?? [];
@@ -40,10 +47,9 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <LiquidFilter />
       <Ambient />
-      <AnimatePresence mode="wait">
-        {!ready ? (
-          <PageSkeleton key="boot" withChrome />
-        ) : (
+      {/* The skeleton fades out over the app instead of blocking its mount, so a page opened in a background tab still renders. */}
+      {bootSkeleton && <PageSkeleton withChrome leaving={ready} />}
+      {ready && (
           <motion.div key="app" className="shell" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
             <TopBar />
             <AnimatePresence mode="wait">
@@ -70,8 +76,7 @@ export default function App() {
             <Toast />
             <LoginSheet />
           </motion.div>
-        )}
-      </AnimatePresence>
+      )}
     </MotionConfig>
   );
 }

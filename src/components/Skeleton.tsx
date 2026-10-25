@@ -1,5 +1,3 @@
-import { motion } from "motion/react";
-
 export function Sk({ className = "", style }: { className?: string; style?: React.CSSProperties }) {
   return <span className={`sk ${className}`} style={style} aria-hidden />;
 }
@@ -26,18 +24,13 @@ export function GridSkeleton({ count = 6 }: { count?: number }) {
   );
 }
 
-/** Full-screen skeleton shown while the app boots and while lazy routes load. */
-export function PageSkeleton({ withChrome = false }: { withChrome?: boolean }) {
+/**
+ * Full-screen skeleton shown while the app boots and while lazy routes load.
+ * Fades with CSS (not JS animation) so it also clears in background tabs where rAF is paused.
+ */
+export function PageSkeleton({ withChrome = false, leaving = false }: { withChrome?: boolean; leaving?: boolean }) {
   return (
-    <motion.div
-      className={`page-skeleton ${withChrome ? "with-chrome" : ""}`}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.35 } }}
-      role="status"
-      aria-label="読み込み中"
-      data-testid="page-skeleton"
-    >
+    <div className={`page-skeleton ${withChrome ? "with-chrome" : ""} ${leaving ? "leaving" : ""}`} role="status" aria-label="読み込み中" data-testid="page-skeleton">
       {withChrome && (
         <div className="topbar glass sk-topbar">
           <Sk style={{ width: 72, height: 18 }} />
@@ -61,6 +54,6 @@ export function PageSkeleton({ withChrome = false }: { withChrome?: boolean }) {
           ))}
         </div>
       )}
-    </motion.div>
+    </div>
   );
 }
