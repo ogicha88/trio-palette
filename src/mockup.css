@@ -1,0 +1,489 @@
+/* Sample designs rendered from a trio. All sizes are in container units so they scale with the card. */
+.mock {
+  position: relative;
+  width: 100%;
+  container-type: inline-size;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--base);
+  color: var(--ink);
+  font-family: var(--jp);
+  line-height: 1.2;
+  user-select: none;
+}
+.mock,
+.mock * {
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
+}
+.mock-deco {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.mock-deco * {
+  transition: fill 0.6s ease, stroke 0.6s ease;
+}
+.m-split {
+  position: absolute;
+  z-index: 0;
+  background: var(--main);
+}
+.m-body {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 7cqw;
+}
+.m-kicker {
+  font: 700 2.7cqw/1 "Space Grotesk", var(--jp);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.m-title {
+  font-family: var(--display);
+  font-weight: var(--tw);
+  font-style: var(--fs);
+  text-transform: var(--tt);
+  letter-spacing: var(--ls);
+  color: var(--title);
+  font-size: 18cqw;
+  line-height: 0.92;
+  margin-top: 3cqw;
+  overflow-wrap: anywhere;
+}
+.m-jp {
+  align-self: flex-start;
+  margin-top: 4cqw;
+  padding: 1.6cqw 2.8cqw;
+  border-radius: var(--rad);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--jp);
+  font-weight: 700;
+  font-size: 4.2cqw;
+  white-space: nowrap;
+}
+.m-date {
+  margin-top: auto;
+  font: 700 8cqw/1 "Space Grotesk", var(--jp);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.m-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  margin-top: 3cqw;
+  padding: 1.8cqw 4.5cqw;
+  border-radius: 99cqw;
+  background: var(--main);
+  color: var(--on-main);
+  font: 700 3cqw/1 "Space Grotesk", var(--jp);
+  letter-spacing: 0.06em;
+}
+.m-lines {
+  position: absolute;
+  right: 7cqw;
+  bottom: 7cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4cqw;
+  align-items: flex-end;
+}
+.m-lines i {
+  display: block;
+  height: 1.1cqw;
+  border-radius: 1cqw;
+  background: var(--ink);
+  opacity: 0.35;
+  width: 16cqw;
+}
+.m-lines i:nth-child(2) {
+  width: 11cqw;
+}
+.m-lines i:nth-child(3) {
+  width: 14cqw;
+}
+
+/* ----- per-taste tuning ----- */
+.taste-casual .m-title,
+.taste-cute .m-title {
+  font-size: 21cqw;
+  line-height: 0.95;
+}
+.taste-casual .m-jp {
+  transform: rotate(-4deg);
+}
+.taste-pop .m-title,
+.taste-street .m-title {
+  font-size: 15cqw;
+  line-height: 0.98;
+}
+.taste-pop .m-jp {
+  transform: rotate(-3deg);
+}
+.taste-fresh .m-title {
+  font-size: 15cqw;
+}
+.taste-cool .m-title {
+  font-size: 22cqw;
+  line-height: 0.86;
+}
+.taste-minimal .m-title {
+  font-size: 22cqw;
+}
+.taste-minimal .m-jp {
+  background: none;
+  color: var(--ink);
+  padding: 0;
+  font-weight: 500;
+}
+.taste-elegant .m-title {
+  font-size: 20cqw;
+}
+.taste-elegant .m-jp,
+.taste-luxury .m-jp,
+.taste-japanese .m-jp,
+.taste-retro .m-jp {
+  background: none;
+  color: var(--ink);
+  padding: 0;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+}
+.taste-luxury .m-title {
+  font-size: 11cqw;
+  line-height: 1.1;
+}
+.taste-luxury .m-kicker,
+.taste-elegant .m-kicker {
+  letter-spacing: 0.4em;
+}
+.taste-japanese .m-title {
+  font-size: 20cqw;
+}
+.taste-tech .m-title {
+  font-size: 19cqw;
+  line-height: 0.85;
+}
+.taste-tech .m-jp {
+  border-radius: 1cqw;
+}
+.taste-retro .m-title {
+  font-size: 22cqw;
+}
+
+/* ----- poster ----- */
+.mock-poster.lay-center .m-body {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-bottom: 12cqw;
+}
+.mock-poster.lay-center .m-jp {
+  align-self: center;
+}
+.mock-poster.lay-center .m-date {
+  margin-top: 8cqw;
+  font-size: 4cqw;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+.mock-poster.lay-center .m-lines {
+  display: none;
+}
+.mock-poster.taste-japanese .m-title {
+  writing-mode: vertical-rl;
+  font-size: 22cqw;
+  margin: 4cqw 0;
+}
+
+.mock-poster.lay-split .m-split {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 56%;
+}
+.mock-poster.lay-split .m-kicker,
+.mock-poster.lay-split .m-title {
+  color: var(--on-main);
+}
+.mock-poster.lay-split .m-body {
+  padding-top: 9cqw;
+}
+.mock-poster.lay-split .m-title {
+  margin-bottom: auto;
+}
+.mock-poster.lay-split .m-jp {
+  margin-top: 0;
+  position: absolute;
+  top: calc(56% * 1.333 - 6cqw);
+  left: 7cqw;
+}
+.mock-poster.lay-split .m-date {
+  margin-bottom: 0;
+}
+
+/* ----- banner ----- */
+.mock-banner .m-body {
+  padding: 5cqw 6cqw;
+  justify-content: center;
+}
+.mock-banner .m-kicker {
+  font-size: 1.7cqw;
+}
+.mock-banner .m-title {
+  font-size: 9.5cqw;
+  margin-top: 1.5cqw;
+  max-width: 64%;
+}
+.mock-banner .m-jp {
+  font-size: 2.3cqw;
+  margin-top: 2cqw;
+}
+.mock-banner .m-date {
+  position: absolute;
+  right: 6cqw;
+  bottom: 5cqw;
+  font-size: 3.4cqw;
+  margin: 0;
+}
+.mock-banner .m-cta {
+  font-size: 1.8cqw;
+  padding: 1.2cqw 3cqw;
+  margin-top: 2.4cqw;
+}
+.mock-banner.lay-center .m-body {
+  align-items: center;
+  text-align: center;
+}
+.mock-banner.lay-center .m-title {
+  max-width: none;
+}
+.mock-banner.lay-center .m-jp,
+.mock-banner.lay-center .m-cta {
+  align-self: center;
+}
+.mock-banner.lay-center .m-date {
+  display: none;
+}
+.mock-banner.lay-split .m-split {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 54%;
+}
+.mock-banner.lay-split .m-kicker,
+.mock-banner.lay-split .m-title {
+  color: var(--on-main);
+}
+.mock-banner.lay-split .m-title {
+  max-width: 46%;
+}
+.mock-banner.lay-split .m-cta {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.mock-banner.lay-split .m-jp {
+  position: absolute;
+  left: 60%;
+  top: 34%;
+}
+.mock-banner.taste-japanese .m-title,
+.mock-banner.taste-luxury .m-title {
+  font-size: 7cqw;
+}
+
+/* ----- sns ----- */
+.mock-sns .m-body {
+  padding: 7cqw;
+  justify-content: flex-end;
+}
+.mock-sns .m-title {
+  font-size: 16cqw;
+}
+.mock-sns .m-date {
+  position: absolute;
+  top: 7cqw;
+  right: 7cqw;
+  margin: 0;
+  font-size: 3.2cqw;
+  padding: 2cqw 3cqw;
+  border-radius: 99cqw;
+  background: var(--main);
+  color: var(--on-main);
+}
+.mock-sns .m-cta {
+  display: none;
+}
+.mock-sns .m-kicker {
+  position: absolute;
+  top: 9cqw;
+  left: 7cqw;
+}
+.mock-sns.lay-center .m-body {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.mock-sns.lay-center .m-jp {
+  align-self: center;
+}
+.mock-sns.lay-center .m-kicker {
+  position: static;
+}
+.mock-sns.lay-center .m-date {
+  top: auto;
+  bottom: 7cqw;
+  right: 50%;
+  transform: translateX(50%);
+  white-space: nowrap;
+}
+.mock-sns.lay-split .m-split {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 46%;
+}
+.mock-sns.lay-split .m-title,
+.mock-sns.lay-split .m-jp {
+  position: relative;
+}
+.mock-sns.lay-split .m-title {
+  color: var(--on-main);
+}
+.mock-sns.lay-split .m-date {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.mock-sns.taste-luxury .m-title {
+  font-size: 10cqw;
+}
+
+/* ----- web (phone) ----- */
+.mock-web {
+  display: flex;
+  flex-direction: column;
+}
+.w-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 11cqw;
+  padding: 0 5cqw;
+  border-bottom: 0.3cqw solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.w-logo {
+  font-family: var(--display);
+  font-weight: var(--tw);
+  font-style: var(--fs);
+  text-transform: var(--tt);
+  color: var(--title);
+  font-size: 5cqw;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 50%;
+}
+.w-nav {
+  display: flex;
+  gap: 3cqw;
+  font: 600 2.6cqw/1 "Space Grotesk", var(--jp);
+  font-style: normal;
+}
+.w-hero {
+  position: relative;
+  height: 70cqw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 7cqw;
+  overflow: hidden;
+}
+.w-hero > * {
+  position: relative;
+}
+.w-hero .mock-deco {
+  position: absolute;
+}
+.w-hero .m-title {
+  font-size: 15cqw;
+}
+.w-hero .m-jp {
+  font-size: 3.6cqw;
+}
+.w-hero .m-cta {
+  font-size: 3cqw;
+  margin-top: 5cqw;
+  padding: 2.6cqw 6cqw;
+}
+.mock-web.lay-center .w-hero {
+  align-items: center;
+  text-align: center;
+}
+.mock-web.lay-center .w-hero .m-jp,
+.mock-web.lay-center .w-hero .m-cta {
+  align-self: center;
+}
+.mock-web.lay-split .w-hero {
+  background: var(--main);
+}
+.mock-web.lay-split .w-hero .m-title,
+.mock-web.lay-split .w-hero .m-kicker {
+  color: var(--on-main);
+}
+.mock-web.lay-split .w-hero .m-cta {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.mock-web.taste-luxury .w-hero .m-title {
+  font-size: 10cqw;
+}
+.w-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3cqw;
+  padding: 6cqw 5cqw;
+  flex: 1;
+}
+.w-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6cqw;
+}
+.w-card b {
+  display: block;
+  aspect-ratio: 1;
+  border-radius: var(--rad);
+  background: var(--soft);
+}
+.w-card.c1 b {
+  background: var(--accent);
+}
+.w-card i {
+  display: block;
+  height: 1.4cqw;
+  border-radius: 1cqw;
+  background: var(--ink);
+  opacity: 0.25;
+}
+.w-card i:last-child {
+  width: 60%;
+}
+.w-band {
+  height: 14cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 700 3.4cqw/1 "Space Grotesk", var(--jp);
+  letter-spacing: 0.08em;
+}

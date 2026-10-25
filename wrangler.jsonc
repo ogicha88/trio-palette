@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "trio-palette",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "assets": {
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/auth/*"]
+  },
+  "ai": { "binding": "AI" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "trio-palette-db",
+      "database_id": "5f8e8824-0825-4bac-abb4-9bb35f38eba7",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "GOOGLE_CLIENT_ID": ""
+  }
+}
